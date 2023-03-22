@@ -1,0 +1,39 @@
+/* Create table about the people and what they do here */
+CREATE TABLE famous_people (id INTEGER PRIMARY KEY, name TEXT,most_recent_film TEXT);
+
+INSERT INTO famous_people VALUES (1, "Leonardo DiCaprio", "Dont Look up");
+INSERT INTO famous_people VALUES (2, "Morgan Freeman", "The Minute You Wake Up Dead");
+INSERT INTO famous_people VALUES(3, "Denzel Washington", "The Tragedy of Macbeth");
+INSERT INTO famous_people VALUES(4, "Tom Hanks", "A Man Called Otto");
+INSERT INTO famous_people VALUES(5, "Jack Nicholson", "How Do You Know");
+INSERT INTO famous_people VALUES(6,"Sean Penn", "Licorice Pizza");
+INSERT INTO famous_people VALUES(7,"Will Smith", "Emancipation");
+
+CREATE TABLE birthplace (id INTEGER PRIMARY KEY, name TEXT, city TEXT, state TEXT);
+INSERT INTO birthplace VALUES (1, "Leonardo DiCaprio", "Los Angeles", "California");
+INSERT INTO birthplace VALUES (2, " Morgan Freeman", "Memphis", "Tennessee");
+INSERT INTO birthplace VALUES(3, "Denzel Washington", "Mount Vernon", "New York");
+INSERT INTO birthplace VALUES(4,  "Tom Hanks", "Concord", "California");
+INSERT INTO birthplace VALUES(5, "Jack Nicholson", "Neptune City", "New Jersey");
+INSERT INTO birthplace VALUES(6,"Sean Penn", "Santa Monica", "California"); 
+INSERT INTO birthplace VALUES(7,"Will Smith", "Phildelphia", "Pennsylvania");
+
+CREATE TABLE oscars (id INTEGER PRIMARY KEY, name TEXT, oscars_won INTEGER);
+INSERT INTO oscars VALUES (1, "Lenoardo DiCaprio", 1);
+INSERT INTO oscars VALUES(2, "Morgan Freeman", 1);
+INSERT INTO oscars VALUES(3, "Denzel Washington", 2);
+INSERT INTO oscars VALUES(4, "Tom Hanks", 2);
+INSERT INTO oscars VALUES(5, "Jack Nicholson", 3);
+INSERT INTO oscars VALUES(6, "Sean Penn", 2);
+INSERT INTO oscars VALUES(7, "Will Smith", 1);
+
+
+/* This query adds all fo the data together to make it easily readable*/
+SELECT oscars.oscars_won, fp.name,birthplace.state, birthplace.city
+FROM famous_people fp 
+JOIN birthplace
+ON fp.id=birthplace.id
+JOIN oscars
+ON oscars.id=fp.id
+ORDER BY oscars_won desc;
+
